@@ -15,6 +15,12 @@ btnFlotante.addEventListener("click", mostrarOcultarFooter);            /*Añadi
 
 
 
+    
+
+
+
+
+
 
 /*Creamos al función que responderá al evento del botón. Cambiando la clase del footer y del botón, haremos que haga una cosa u otra*/
 function mostrarOcultarFooter () {                                      
@@ -31,3 +37,7 @@ function mostrarOcultarFooter () {
     
 
 };
+
+
+
+
