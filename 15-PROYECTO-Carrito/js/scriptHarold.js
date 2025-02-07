@@ -1,5 +1,3 @@
-
-
 const carrito = document.querySelector("#carrito");
 
 const contenedorCarrito = document.querySelector("#lista-carrito tbody");
@@ -39,6 +37,7 @@ function agregarCurso(e){                                   //Agrega al carrito 
 
 function leerDatosCurso(curso){                 //Complementa a "agregarCurso". Extrae la info de toda la tarjeta de ese curso
     
+    let verificador = true;
 
     const infoCurso = {
         imagen: curso.querySelector("img").src,
@@ -51,16 +50,11 @@ function leerDatosCurso(curso){                 //Complementa a "agregarCurso". 
     const existe = articulosCarrito.some(producto => producto.id===infoCurso.id);
 
     if(existe){
-        const cursos = articulosCarrito.map( curso =>{
-            if(curso.id===infoCurso.id){
-                curso.cantidad++;
-                return curso;
-            }else{
-                return curso;
+        for (let producto of articulosCarrito){
+            if(producto.id===infoCurso.id){
+                producto.cantidad++;
             }
-
-        });
-        articulosCarrito = [...cursos];
+        };
     }else{
         articulosCarrito = [...articulosCarrito, infoCurso];
     }
