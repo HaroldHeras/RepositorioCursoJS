@@ -2,8 +2,6 @@ const carrito = document.querySelector("#carrito");
 
 const contenedorCarrito = document.querySelector("#lista-carrito tbody");
 
-const vaciarCarritoBtn = document.querySelector("#vaciar-carrito");
-
 const listaCursos = document.querySelector("#lista-cursos");
 
 let articulosCarrito = [];
@@ -13,6 +11,9 @@ cargarEventListeners();
 
 function cargarEventListeners(){
     listaCursos.addEventListener("click", agregarCurso);        //Cuando pulsas en "Agregar al carrito"
+
+    carrito.addEventListener("click", borrarCursos);
+
 
 }
 
@@ -33,6 +34,40 @@ function agregarCurso(e){                                   //Agrega al carrito 
     }
     
 }
+
+
+function borrarCursos (e){
+
+    if(e.target.classList.contains("borrar-curso")){
+
+        let id = e.target.getAttribute("data-id");
+        
+        articulosCarrito.forEach((articulo,indice) => {
+            if(articulo.id===id){
+                if(articulo.cantidad>1){
+                    articulo.cantidad--;
+                }else{
+                    articulosCarrito.splice(indice,1);
+                }
+            };
+        });
+
+                
+    };
+
+    if(e.target.getAttribute("id")==="vaciar-carrito"){
+        
+       articulosCarrito = [];
+
+    };
+
+
+    carritoHTML();
+    
+};
+
+
+
 
 
 function leerDatosCurso(curso){                 //Complementa a "agregarCurso". Extrae la info de toda la tarjeta de ese curso

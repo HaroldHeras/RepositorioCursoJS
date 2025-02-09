@@ -16,6 +16,16 @@ cargarEventListeners();
 function cargarEventListeners(){
     listaCursos.addEventListener("click", agregarCurso);        //Cuando pulsas en "Agregar al carrito"
 
+    carrito.addEventListener("click", eliminarCurso);
+
+    vaciarCarritoBtn.addEventListener("click", ()=>{
+
+        articulosCarrito = [];
+
+        limpiarHTML();
+
+    });
+
 }
 
 
@@ -35,6 +45,35 @@ function agregarCurso(e){                                   //Agrega al carrito 
     }
     
 }
+
+function eliminarCurso(e){
+    const cursoID = e.target.getAttribute("data-id");
+
+    if(e.target.classList.contains("borrar-curso")){
+
+        
+        articulosCarrito = articulosCarrito.filter( curso => {
+
+            if(curso.id === cursoID){
+                if(curso.cantidad>1){
+                    curso.cantidad--;
+                    return curso;
+                }else{
+                    delete curso;
+                }
+            }else{
+                return curso;
+            }
+        });
+
+        carritoHTML();
+
+    }
+
+    
+
+}
+
 
 
 function leerDatosCurso(curso){                 //Complementa a "agregarCurso". Extrae la info de toda la tarjeta de ese curso
