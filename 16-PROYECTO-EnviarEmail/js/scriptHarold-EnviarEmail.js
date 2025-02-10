@@ -2,6 +2,13 @@
 
 document.addEventListener("DOMContentLoaded", function (){
 
+
+    const email= {
+        email: "",
+        asunto: "",
+        mensaje: ""
+    };
+
     //Obtenemos los elementos con los que vamos a trabajar
     const inputEmail = document.querySelector("#email");
     const inputAsunto = document.querySelector("#asunto");
@@ -21,27 +28,31 @@ document.addEventListener("DOMContentLoaded", function (){
 
     function validar (e) {
 
-        switch(e.target.getAttribute("id")){
+        const id = e.target.id;
 
-            case "email": 
-                if(e.target.value.trim() === ""){
-                    console.log("Escribe algo en email joder...");
-                }
-                break;
-            
-            case "asunto": 
-                if(e.target.value.trim() === ""){
-                     console.log("Escribe algo en asunto joder...");
-                 }
-                break;
+        const elementoPadre = e.target.parentElement;
 
-            case "mensaje": 
-                if(e.target.value.trim() === ""){
-                    console.log("Escribe algo en mensaje joder...");
-                }
-                break;    
+        const alerta = document.querySelector(`.alerta-${id}`);
 
-        };
+        const validacionEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+       if(alerta){
+            if((e.target.id === "email" && e.target.value.trim() !== "" && validacionEmail.test(e.target.value) ) || e.target.value.trim() !== "" ){
+                alerta.remove();
+            }
+       };
+
+       if(e.target.value.trim() === "" || (e.target.id === "email" && !validacionEmail.test(e.target.value))){
+            if(alerta) alerta.remove();
+            const error = document.createElement("P");
+            error.classList.add("bg-red-600", "text-white", "p-2", "text-center", `alerta-${id}`);
+            error.textContent = "Dato no válido";
+
+            elementoPadre.appendChild(error);
+        }
+
+        
+
         
     };
 
