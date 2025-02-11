@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", function (){
     const inputEmail = document.querySelector("#email");
     const inputAsunto = document.querySelector("#asunto");
     const inputMensaje = document.querySelector("#mensaje");
-    const inputCC = document.querySelector("#CC");
+    const inputCC = document.querySelector("#cc");
     const formulario = document.querySelector("#formulario");
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const btnReset = document.querySelector('#formulario button[type="reset"]');
     const spinner = document.querySelector("#spinner");
-    
+
+    let ccOkey = true;                          //Definimos una variable para evaluar el campo "CC"   
 
 
 
@@ -86,9 +87,11 @@ document.addEventListener("DOMContentLoaded", function (){
 
         if(e.target.value.trim() === ""){                       //Si algún campo está vacío
 
-            if(e.target.id === "CC"){                       //En caso de ser este campo, como no es obligatorio, quitamos la alerta y borramos lo que hay de el en el objeto
+            if(e.target.id === "cc"){                       //En caso de ser este campo, como no es obligatorio, quitamos la alerta y borramos lo que hay en el objeto
                 limpiarAlerta(e.target.parentElement);
-                email[e.target.name] = "";
+                email[e.target.name] = "";       
+                ccOkey = true;                              //Volvemos a ahcer true la variable para poder encender el botón
+                comprobarEmail();                           //Evaluamos si ya se puede pulsar el boton
                 return;
             }else{                                              //Si es cualquiera de los otros
                 mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);        //Mostramos alerta pasandole el mensaje y el elemento en el que tiene que colocarla
@@ -98,13 +101,31 @@ document.addEventListener("DOMContentLoaded", function (){
             }
         };
 
-        if((e.target.id === "email" || e.target.id === "cc") && !validarEmail(e.target.value)){         //Si es el campo email o CC y no cumple con la validación de la dirección email
+        if(e.target.id === "email" && !validarEmail(e.target.value)){         //Si es el campo email y no cumple con la validación de la dirección email
             
             mostrarAlerta("El email no es válido", e.target.parentElement);         //Muestra alerta
             email[e.target.name] = "";                                              //Borra la info de ese campo en el objeto
             comprobarEmail();                                                       //Comprueba el objeto para que n odeje ver el botón
 
             return;
+
+        };
+
+        if(e.target.id === "cc"){                                                   //Si es el campo CC
+            
+            if(!validarEmail(e.target.value)){                                      //Si no pasa la validacion de email
+                ccOkey = false
+                mostrarAlerta("El email no es válido", e.target.parentElement);        
+                email[e.target.name] = "";                              
+                comprobarEmail();                                                       
+
+                return;
+
+            }else{                                                              //Si la cumple, cambia a true y continúa el código
+                ccOkey = true;
+            }
+            
+            
 
         };
                                                                             //Si todo está bien
@@ -160,7 +181,11 @@ document.addEventListener("DOMContentLoaded", function (){
 
 
     function comprobarEmail(){                                                  //Comprobamos el objeto que almacena los datos
-        if(email.email==="" || email.asunto==="" || email.mensaje===""){        //Si cualquiera de estos tres está vacío(el campo "cc" si que puede estarlo, por eso aquí no sale)
+
+        
+
+        
+        if(!ccOkey || email.email==="" || email.asunto==="" || email.mensaje===""){        //Si se cumple cualquiera de las 4 opciones
            
             btnSubmit.classList.add("opacity-50");                          //Modificamos el botón "enviar" para que no se pueda pulsar
             btnSubmit.disabled = true;
