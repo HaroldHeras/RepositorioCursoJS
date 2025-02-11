@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function (){
     const inputMensaje = document.querySelector("#mensaje");
     const formulario = document.querySelector("#formulario");
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
+    const btnReset = document.querySelector('#formulario button[type="reset"]');
+    const spinner = document.querySelector("#spinner");
+    
+
 
 
     //Asignamos eventos a los elementos
@@ -25,13 +29,55 @@ document.addEventListener("DOMContentLoaded", function (){
     inputAsunto.addEventListener("input", validar);
     inputMensaje.addEventListener("input", validar);
 
+    formulario.addEventListener("submit", enviarEmail);
+
+    btnReset.addEventListener("click", function(e){
+        e.preventDefault();
+
+        resetFormulario();
+
+    } );
+
   
 
+    function enviarEmail(e){
+       
+        e.preventDefault();
 
+        spinner.classList.add("flex");
+        spinner.classList.remove("hidden");
+
+        setTimeout(()=>{
+            spinner.classList.add("hidden");
+            spinner.classList.remove("flex");
+
+            resetFormulario();
+
+            const alertaExito = document.createElement("P");
+            alertaExito.classList.add("bg-green-500", "text-white", "p-2", "text-center", "rounded-lg", "mt-10", 
+                "font-bold", "text-sm", "uppercase");
+
+            alertaExito.textContent = "Mensaje enviado correctamente";
+
+            formulario.appendChild(alertaExito);
+
+            setTimeout(()=>{
+                alertaExito.remove();
+            },3000);
+
+        },3000);
+
+
+        
+
+        
+    };
 
 
 
     function validar (e) {
+
+        
 
         if(e.target.value.trim() === ""){
             mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);
@@ -113,6 +159,18 @@ document.addEventListener("DOMContentLoaded", function (){
         btnSubmit.disabled = false;
 
         
+    };
+
+
+    function resetFormulario() {
+
+        email.email = "";
+        email.asunto = "";
+        email.mensaje = "";
+
+        formulario.reset();
+        comprobarEmail();
+
     };
 
     
