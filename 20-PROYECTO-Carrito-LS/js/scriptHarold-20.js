@@ -18,20 +18,18 @@ cargarEventListeners();                     //Ejecutamos la función que carga l
 
 /*Función que agrupa todos los EventListeners y los ejecuta a la vez */
 function cargarEventListeners(){
+
+    document.addEventListener("DOMContentLoaded", cargaLocalStorage);
+
     listaCursos.addEventListener("click", agregarCurso);        //Cuando pulsas en "Agregar al carrito"
 
     carrito.addEventListener("click", eliminarCurso);           //Cuando pulsas en la "X" de un articulo en el carrito
 
-    document.addEventListener("DOMContentLoaded", ()=>{         //Cuando el documento se carga, realizamos esto
-        articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];       //Le damos el valor del Storage al array de articulos. Si este es null, el valor será un array vacío.
-        carritoHTML();                      //Dibujamos el html con los artículos que hemos extraido al array
-    });
-
     vaciarCarritoBtn.addEventListener("click", ()=>{            //Cuando le das a vaciar carrito
 
-        articulosCarrito = [];          //Resetea el array de articulos
+        articulosCarrito = [];
 
-        carritoHTML();              //Borra lo anterior y dibuja lo que hay en el array, que será nada. A mayores también actualizará el storage
+        carritoHTML();
 
     });
 
@@ -112,7 +110,6 @@ function leerDatosCurso(curso){                 //Complementa a "agregarCurso". 
         articulosCarrito = [...articulosCarrito, infoCurso];            //Si no existe en el Array, le añadmis directamente.(Copiamos el array que ya habia para evitar que se duplique y añadimos el curso nuevo)
     }
 
-
     carritoHTML();                  //Ejecutamos la función que crea el código HTML con el Array actualizado
 }
 
@@ -153,9 +150,9 @@ function carritoHTML(){
 
     )
 
-    sincronizarStorage();           //Actualizamos el localstorage con los articulos que tenemos escogidos
+    actualizarLocalStorage();
 
-}
+};
 
 /*Funcion creada para limpiar el carrito*/
 function limpiarHTML(){                             
@@ -165,10 +162,23 @@ function limpiarHTML(){
     while(contenedorCarrito.firstChild){      //FORMA RAPIDA. Comprueba si hay hijos, y los va borrando uno a uno hasta que este vacío    
         contenedorCarrito.removeChild(contenedorCarrito.firstChild);
     }
-}
-
-
-/*Función creada para actualizar el localStorage con los articulos que guarda el array */
-function sincronizarStorage(){
-    localStorage.setItem("carrito", JSON.stringify(articulosCarrito));      //Parseamos el array de articulos y actualizamos con el el Storage
 };
+
+
+
+function cargaLocalStorage(){
+
+    articulosCarrito = JSON.parse(localStorage.getItem("listaCompra")) || [];
+
+    carritoHTML();
+
+};
+
+
+function actualizarLocalStorage(){
+
+    localStorage.setItem("listaCompra", JSON.stringify(articulosCarrito));
+    
+};
+
+
