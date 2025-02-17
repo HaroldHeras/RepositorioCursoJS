@@ -1,5 +1,5 @@
 
-/*Vemos como crear métodos propios deu n objeto, también llamados prototypes */
+/*Vemos como crear métodos propios de un objeto, también llamados prototypes */
 
 
 
