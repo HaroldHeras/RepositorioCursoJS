@@ -7,9 +7,8 @@
 document.addEventListener("DOMContentLoaded", ()=>{
 
     
-
     const formulario = document.querySelector("#cotizar-seguro");
-
+    
 
     cargaYears();
 
@@ -58,22 +57,22 @@ UI.prototype.autoValida = function() {                  //METODO PARA VALIDAR SE
 };
 
 
-UI.prototype.creaMensaje = (validacion)=>{                                  //METODO PARA CREAR MENSAJE DE ERROR O CONFIRMAR
-
+UI.prototype.creaMensaje = (validacion)=>{          
+    
+    //METODO PARA CREAR MENSAJE DE ERROR O CONFIRMAR
+    
     const formulario = document.querySelector("#cotizar-seguro");
     const resultado = document.querySelector("#resultado");
     const spinner = document.querySelector("div #cargando ");
+
     let mensaje = document.createElement("div");
     mensaje.classList.add("mensaje", "mt-10");
-
-    
-
-    
 
 
     if(!validacion){
         mensaje.classList.add("error");
         mensaje.textContent = "Debe seleccionar una marca";
+
         
     }else{
         mensaje.classList.add("correcto");
@@ -82,18 +81,17 @@ UI.prototype.creaMensaje = (validacion)=>{                                  //ME
         
     };
 
+
     formulario.insertBefore(mensaje, resultado);
 
     while(resultado.firstChild){ resultado.removeChild(resultado.firstChild)};
+
+
 
     setTimeout(()=>{
         mensaje.remove();
         spinner.classList.add("hidden");
     }, 3000);
-
-    
-    
-    
 
 };
 
@@ -109,8 +107,6 @@ UI.prototype.muestraResultado = function() {                                //ME
 
     const resultadoHijo = document.createElement("div");
     resultadoHijo.classList.add("mt-10");
-
-    
 
     resultadoHijo.innerHTML = `
         <p class="header"> Tu resumen</p>
@@ -179,16 +175,13 @@ function cargaYears(){                                            //CARGA EL SEL
         seletctorYear.appendChild(year);
 
     };
-
-
-
 };
 
 
 function obtieneSeleccion(e){                 //OBTIENE LAS SELECCIONES DEL FORMULARIO E INSTANCIA UN OBJETO PASANDOLE LO SELECCIONADO
 
     e.preventDefault();
-
+    
     const marcaSeleccion = document.querySelector("#marca").value;
     const yearSeleccion = document.querySelector("#year").value;
     const tipoSeleccion = document.querySelector("input[name='tipo']:checked").value;
@@ -204,9 +197,6 @@ function obtieneSeleccion(e){                 //OBTIENE LAS SELECCIONES DEL FORM
             ui.muestraResultado();
         }, 3000);
     };
-
-
-
 
 };
 
