@@ -1,16 +1,16 @@
 
 //Variables y selectores
 
-const formulario = document.querySelector("#agregar-gasto");
+const formulario = document.querySelector("#agregar-gasto");       //Obtenemos los elementos del formulario y del la lista de gastos
 const gastoListado = document.querySelector("#gastos ul");
 
 
 
 //Eventos
 
-eventListeners();
+eventListeners();                                                           //Ejecutamos la funcion que carga los Listeners
 
-function eventListeners(){
+function eventListeners(){                      //Creamos al función que carga el listener del documento y del formulario
 
     document.addEventListener("DOMContentLoaded", preguntarPresupuesto);
 
@@ -21,9 +21,9 @@ function eventListeners(){
 
 //Clases
 
-class Presupuesto{
+class Presupuesto{                                      //Creamos la clase Presupuesto y sus métodos
 
-    constructor (presupuesto){
+    constructor (presupuesto){                          
         this.presupuesto = presupuesto;
         this.restante = presupuesto;
         this.gastos = [];
@@ -54,7 +54,7 @@ class Presupuesto{
 
 
 
-class UI{
+class UI{                                       //Creamos la clase UI con sus métodos
 
     insertarPresupuesto(cantidad){
 
