@@ -32,4 +32,4 @@ const noDuplicados = new Set(numeros);
 console.log(noDuplicados);                       //Si imprimimos el contenido, vemos que no están los repetidos  
 
 
-carrito.clear();                //Con este método, vaciamos el Set
+noDuplicados.clear();                //Con este método, vaciamos el Set
