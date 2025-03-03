@@ -78,7 +78,7 @@ function crearCliente(){
 
     const objectStore = transaction.objectStore("crm");         //Guardamos en esta variable una referencia a la tabla, pero que seguirá las normas del patrón creado
 
-    const nuevoCliente = {
+    const nuevoCliente = {                          //Creamos un objeto que el nombre de sus atributos es el mimso que el de las columnas de la tabla
         telefono: 123456789,
         nombre: "Juan", 
         email: "correo@correo.com"                              //Ojo! Como el campo email es unico. Si intentamos reproducir el codigo dos veces sin cambiar el email, dará error por no poder meter el mismo email en dos registros
