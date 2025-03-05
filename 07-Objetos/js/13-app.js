@@ -11,10 +11,10 @@ const producto = {                                  //Creamos un objeto literal.
 
 console.log(producto);                          //Inmprimimos el producto con toda la info
 
-console.log(Object.keys(producto));             //Con ste método imprimimos el nombre de los atributos
+console.log(Object.keys(producto));             //Con este método imprimimos el nombre de los atributos
 
 
-console.log(Object.values(producto));           //Con este método imprimimos le valor de los atributos
+console.log(Object.values(producto));           //Con este método imprimimos el valor de los atributos
 
 console.log(Object.entries(producto));          //Con este métdoo imprimimos todo, almacenandolo en Arrays
 
