@@ -38,7 +38,7 @@ function ejecutarSpeechAPI(){
     recognition.onresult = function(e){                 //Al tener un resultado:
 
         const {transcript, confidence} = e.results[0][0];       //Obtenemos el evento. Dentro tiene un array, y en la posicion 0 tiene otro array, y dentro de ese array, en la posición 0 esta el objeto con los datos de la transcripcion
-
+       
         const transcripcion = document.createElement("p");      //Creamos dos elementos para imprimir el resultado
         const acierto = document.createElement("p");
 

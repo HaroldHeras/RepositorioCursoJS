@@ -118,7 +118,7 @@
                 nombre: nombreInput.value,
                 email: emailInput.value,
                 telefono: telefonoInput.value,
-                empresa: emailInput.value,
+                empresa: empresaInput.value,
                 id: idCliente
             };
 
