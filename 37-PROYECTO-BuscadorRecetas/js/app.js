@@ -138,7 +138,7 @@ function favoritosApp(){
                 
             });
             
-            setTimeout(()=>{        //Establecemos un tiempo de 0.5seg para que de tiempo a hacer la consulta antes de imprimir las recetas
+           setTimeout(()=>{        //Establecemos un tiempo de 0.5seg para que de tiempo a hacer la consulta antes de imprimir las recetas
                 mostrarRecetas(arrayRecetas);   //Ejecutamos el método pasándole el array creado con las recetas COMPLETAS
             },500);
             
