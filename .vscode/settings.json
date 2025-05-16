@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/28-Modulos/index.html"
+    "livePreview.defaultPreviewPath": "/28-Modulos/index.html",
+    "editor.guides.bracketPairs": true
 }

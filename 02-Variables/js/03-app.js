@@ -5,3 +5,14 @@ el valor. Además, siempre hay que inicializarlas con un valor. No se pueden ini
 const productoUno; //esto no se puede
 
 const productoDos = "Monitor"; //esto se puede
+
+
+
+
+
+
+
+
+
+
+

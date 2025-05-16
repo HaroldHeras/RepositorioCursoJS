@@ -49,7 +49,9 @@ function inicioApp(){
 
         fetch(url)
             .then(respuesta=> respuesta.json())
-            .then(resultado=>  mostrarCategorias(resultado.categories));    //Enviamos el array con las categorias a otra funcion
+            .then(resultado=>{
+                console.log(resultado); 
+                mostrarCategorias(resultado.categories)});    //Enviamos el array con las categorias a otra funcion
 
     };
 
@@ -124,24 +126,23 @@ function favoritosApp(){
             let arrayRecetas = [];          //Creamos un array en el que almacenaremos las recetas COMPLETAS
            
             //Con este for-each, extraemos de cada elemento del arrayFavoritos el "id" y con este mandamos traer una por una las recetas COMPLETAS para almacenarlas en "arrayRecetas"
-            arrayFavoritos.forEach(favorito=>{
+            arrayFavoritos.forEach(async favorito=>{
                 const id = favorito.id;
                 const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
                 
 
-                
-                    fetch(url)
-                    .then(respuesta=>respuesta.json())
-                    .then(resultado=>arrayRecetas.push(resultado.meals[0]));
-                    
-            
-                
+                try{
+                    const respuesta = await fetch(url);
+                    const resultado = await respuesta.json();
+                    arrayRecetas.push(resultado.meals[0]);
+                    mostrarRecetas(arrayRecetas);               //No se ejecuta hasta que no haya acabado el fetch. V pintando en cada vuelta del forEach uno por uno los elementos del array
+
+
+                }catch(error){
+                    console.log(error);
+                }
             });
-            
-           setTimeout(()=>{        //Establecemos un tiempo de 0.5seg para que de tiempo a hacer la consulta antes de imprimir las recetas
-                mostrarRecetas(arrayRecetas);   //Ejecutamos el método pasándole el array creado con las recetas COMPLETAS
-            },500);
-            
+
 
             
             return;            
