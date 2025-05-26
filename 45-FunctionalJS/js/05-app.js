@@ -8,3 +8,9 @@ const carrito = [
     { nombre: 'Bocinas', precio: 300},
     { nombre: 'Laptop', precio: 800},
 ];
+
+
+const obtenerNombres = producto => producto.nombre;         //Lo mismo que el anterior ejemplo, pero quitando llaves y omitiendo el return.
+const resultado = carrito.map(obtenerNombres);      
+
+console.log(resultado);
