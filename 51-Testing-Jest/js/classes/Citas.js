@@ -1,5 +1,5 @@
 // CLasses
-class Citas {
+export class Citas {
     constructor() {
         this.citas = []
     }
@@ -14,5 +14,3 @@ class Citas {
         this.citas = this.citas.filter( cita => cita.id !== id);
     }
 }
-
-export default Citas;

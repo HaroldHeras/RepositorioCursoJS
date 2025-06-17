@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Testing al cliente Comprobamos que el cliente sea el mismo que el snapshot 1`] = `
+{
+  "balance": 400,
+  "nombre": "Harold",
+  "tipo": "Premium",
+}
+`;
